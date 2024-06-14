@@ -1,6 +1,12 @@
 #!/bin/bash
+BASE_DIR="/workspaces"
+folders=("$BASE_DIR"/*/)
 
-NEW_FTP_DIR="/workspaces/*/"
+if [ ${#folders[@]} -eq 1 ]; then
+    folder_name=$(basename "${folders[0]}")
+fi
+
+NEW_FTP_DIR="$BASE_DIR/$folder_name/"
 sudo apt-get update -y
 sudo apt-get install -y vsftpd
 if id "ftp" &>/dev/null; then
@@ -11,11 +17,15 @@ fi
 
 sudo bash -c 'cat > /etc/vsftpd.conf' << EOF
 listen=YES
-anonymous_enable=YES
-local_enable=NO
-anon_root=$NEW_FTP_DIR
 write_enable=YES
 listen_ipv6=NO
+local_enable=NO
+anonymous_enable=YES
+anon_root=$NEW_FTP_DIR
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+chown_uploads=YES
+chown_username=ftp
 EOF
 
 sudo mkdir -p $NEW_FTP_DIR
