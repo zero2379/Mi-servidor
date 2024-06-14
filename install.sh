@@ -24,11 +24,13 @@ anonymous_enable=YES
 anon_root=$NEW_FTP_DIR
 anon_upload_enable=YES
 anon_mkdir_write_enable=YES
+allow_writeable_chroot=YES
 chown_uploads=YES
 chown_username=ftp
 EOF
 
-sudo mkdir -p $NEW_FTP_DIR
+
+sudo chmod a-w $NEW_FTP_DIR
 sudo chown ftp:ftp $NEW_FTP_DIR
 sudo service vsftpd restart
 echo "Servidor ftp configurado."
