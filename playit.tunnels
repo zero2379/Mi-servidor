@@ -9,8 +9,8 @@
       "active": true,
       "alloc": {
         "data": {
-          "assigned_domain": "say-ellis.gl.joinmc.link",
-          "assigned_srv": "say-ellis.gl.joinmc.link",
+          "assigned_domain": "fire-empirical.gl.joinmc.link",
+          "assigned_srv": "fire-empirical.gl.joinmc.link",
           "assignment": {
             "type": "shared-ip"
           },
